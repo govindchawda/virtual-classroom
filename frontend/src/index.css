@@ -1,0 +1,54 @@
+* {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 500;
+}
+.section-padding{
+  margin: 80px 0px;
+}
+.notfound-page {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.notfound-card {
+  animation: fadeIn 0.7s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.select-option{
+  position: relative;
+}
+.select-option .form-control:focus {
+  .select-input{
+      background-color: white;
+  }
+}
+.select-input{
+  width: 100%;
+  position: absolute;
+  top: 80px;
+}
+.select-option div[style*="cursor: pointer"] {
+  transition: all 0.2s ease;
+}
+.select-option div[style*="cursor: pointer"]:hover {
+  background-color: #d4edda !important;
+}
+
+
+@media (max-width:568px) {
+.container-fluid{
+  padding: 0px !important;
+}
+}

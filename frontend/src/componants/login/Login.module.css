@@ -1,0 +1,102 @@
+.login{
+    background-color: #00797E;
+    padding: 40px 0px;
+}
+.h2{
+    color: #fff;
+    font-size: 50px;
+    font-weight: 600;
+}
+.h6{
+    color: #fff;
+    padding-top: 14px;
+    font-size: 29px;
+    font-weight: 400;
+    a{
+        color: #fff;
+    }
+}
+.login_form{
+    width: 400px;
+    margin: 0 auto;
+}
+.login_form label{
+    font-size: 1rem;
+    font-weight: normal;
+    padding-left: 6px;
+}
+input{
+    padding: 12px 10px !important;
+}
+input:focus{
+    box-shadow: none !important;
+    border: 1px solid #00797E !important;
+}
+.button{
+    margin-top: 40px;
+    background-color: #00797E;
+    color: #fff;
+    font-size: 14px;
+    font-weight: normal;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 0px;
+}
+.form{
+    width: 400px;
+    margin: 0 auto;
+}
+.button_2{
+    margin-top: 60px;
+    background-color: #00797E;
+    color: #fff;
+    font-size: 14px;
+    font-weight: normal;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 0px;
+    position: relative;
+    /* text-align: center; */  
+}
+.button_2::before{
+    content: "";
+    background: url("https://yt3.googleusercontent.com/2eI1TjX447QZFDe6R32K0V2mjbVMKT5mIfQR-wK5bAsxttS_7qzUDS1ojoSKeSP0NuWd6sl7qQ=s900-c-k-c0x00ffffff-no-rj");
+    position: absolute;
+    top: 2pxpx;
+    width: 20px;
+    left: 20px;
+    height: 20px;
+    background-size: 100% 100%;
+    z-index: 4;
+
+}
+.reset_password{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 8px;
+}
+.remember_me{
+    font-size: 14px;
+    font-weight: normal;
+}
+.pr{
+    margin-right: 8px !important;
+}
+.forget_password a{
+    text-decoration: none;
+    color: #386CA1;
+}
+
+
+@media (max-width:568px) {
+
+    .login_form, .button_2, .form{
+        width: 300px !important;
+        margin: 0 auto;
+    }
+    .form-control{
+        min-width: 300px !important;
+    }
+}
