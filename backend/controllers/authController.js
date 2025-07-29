@@ -1,5 +1,5 @@
 const registerModel = require("../models/register");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const cloudniry = require("../cloudinary");
 const { default: mongoose } = require("mongoose");
