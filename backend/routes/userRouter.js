@@ -22,7 +22,7 @@ userroute.get('/getStudents/:id', authMiddleware,  getstudents);
 userroute.post('/updateusers', updateuser);
 
 // GET ALL USERS
-userroute.get('/getallusers', authMiddleware,  getalluser);
+userroute.get('/getallusers',  getalluser);
 
 // GET ALL STUDENTS
 userroute.get('/getallstudents', authMiddleware,  getallstudents);
