@@ -41,7 +41,7 @@ export default function ViewStudents() {
             <span># view Students</span>
           </div>
           <div className="color tittle">
-            <div className="d-flex">
+            <div className="d-flex scroll-table-container">
               <table className="table table-striped table-inverse table-responsive">
                 <thead className="thead-inverse">
                   <tr>

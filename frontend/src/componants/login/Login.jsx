@@ -91,6 +91,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 
+const api = import.meta.env.VITE_API_BASE_URL;
+
 export default function Login() {
   const navigate = useNavigate();
   const [loginValue, setLoginValue] = useState({
@@ -109,7 +111,7 @@ export default function Login() {
           "Content-Type": "application/json"
         },
       }
-      let res = await axios.post('http://localhost:4000/api/auth/login', loginValue, config)
+      let res = await axios.post(`${api}/auth/login`, loginValue, config)
       toast(res.data.message, {
         autoClose: 3000
       });

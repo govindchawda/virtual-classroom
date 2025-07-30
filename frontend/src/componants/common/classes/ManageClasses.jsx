@@ -246,7 +246,7 @@ export default function ManageClasses() {
                             <Link to="add-class" className='btn btn-primary'>+ Add classes</Link>
                         </div>
                     </div>
-                    <div className='d-flex flex-wrap'>
+                    <div className='dflex flex-wrap'>
                         {classes.map((items, index) => {
                             return (
                                 <div className='col-sm-4 p-2 ' key={index}>
@@ -334,15 +334,15 @@ export default function ManageClasses() {
                                     </div>}
                                 <div className="mt-3">
                                     <label htmlFor="" className='alert alert-info w-100'>students</label>
-                                    <div className='d-flex justify-content-between table'>
-                                        <div>Name</div>
-                                        <div>Roll.No</div>
-                                        <div>Action</div>
+                                    <div className='dflex justify-content-between table'>
+                                        <div className='mediaFonts'>Name</div>
+                                        <div className='mediaFonts'>Roll.No</div>
+                                        <div className='mediaFonts'>Action</div>
                                     </div>
                                     {student.map((items, index) => (
                                         <div className='d-flex p-2 justify-content-between' key={index}>
-                                            <div>{items.name}</div>
-                                            <div>{items._id}</div>
+                                            <div className='mediaFonts'>{items.name}</div>
+                                            <div className='mediaFonts'>{items._id}</div>
                                             <div onClick={() => deleteStudents(items._id)} className='btn btn-danger'>Delete</div>
                                         </div>
                                     ))}

@@ -63,7 +63,7 @@ export default function ViewAttendanceClass() {
         setAttendance(prev => {
             const updatedStudents = [...prev.student];
             const existingIndex = updatedStudents.findIndex(s => s.studentId === studentId);
-            console.log("existingIndex",existingIndex)
+            // console.log("existingIndex",existingIndex)
             if (existingIndex !== -1) {
                 updatedStudents[existingIndex].status = role;
             } else {
@@ -104,16 +104,17 @@ export default function ViewAttendanceClass() {
                     <div className='tittle color d-flex justify-content-between'>
                         <span># Show Attendance</span>
                     </div>
-                    <div className="mt-4 tittle color">
+                    <div className="mt-4 tittle color mediaFonts">
                         <form action="" onSubmit={submitAttendance}>
-                            <div className="d-flex justify-content-between">
-                                <div>Tittle : <p>{classes?.tittle}</p></div>
-                                <div>TeacherId : <p>{classes?.teacherId}</p></div>
-                                <div>classId : <p>{classes?._id}</p></div>
-                                <div>Date : <span> <input onChange={inputhandler} required type="date" className='form-control' name="date" id="" /></span></div>
+                            <div className="attendanceMedia d-flex justify-content-between">
+                                <div className='attendance-box'>Tittle : <p>{classes?.tittle}</p></div>
+                                <div className='attendance-box'>TeacherId : <p>{classes?.teacherId}</p></div>
+                                <div className='attendance-box'>classId : <p>{classes?._id}</p></div>
+                                <div className='attendance-box'>Date : <span> <input onChange={inputhandler} required type="date" className='form-control' name="date" id="" /></span></div>
                             </div>
+                            <div className='scroll-table-container'>
                             <table className="table table-striped table-inverse table-responsive mt-3">
-                                <thead className="thead-inverse">
+                                <thead className="thead-inverse ">
                                     <tr>
                                         <th>S.no</th>
                                         <th>Profile</th>
@@ -130,7 +131,7 @@ export default function ViewAttendanceClass() {
                                             <td scope="row">{index + 1}</td>
                                             <td><img className='useImage' src={items.profile} alt="" /></td>
                                             <td>{items.name}</td>
-                                            <td> <input type="text" name='studentId' className='form-control' readOnly value={items?._id} onChange={inputhandler} /></td>
+                                            <td> <input type="text" name='studentId' disabled className='form-control' readOnly value={items?._id} onChange={inputhandler} /></td>
                                             <td>
                                                 <input type="radio" value="online" name={index}
                                                     onChange={() => handleAttendanceChange(items._id, "online", items.name)}required />
@@ -147,6 +148,7 @@ export default function ViewAttendanceClass() {
                                     ))}
                                 </tbody>
                             </table>
+                            </div>
                             <button type='submit' className='btn btn-info mt-3 mr-auto'>submit</button>
                         </form>
                     </div>

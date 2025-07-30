@@ -282,3 +282,63 @@ ul li:hover{
     width: 180px;
     /* border-radius: 50%;  */
 }
+
+
+/* use for dynamic */
+.dflex{
+    display: flex;
+}
+.textWrap{
+    text-wrap: nowrap;
+}
+
+
+@media (max-width:568px){
+    .topbae-logo{
+        width: 50%;
+    }
+    .color{
+        /* flex-direction: column; */
+        text-align: center;
+    }
+    .leftbar{
+        position: absolute;
+        height: auto;
+    }
+    .rightbar{
+        /* margin-left: 40px; */
+        padding: 0px;
+    }
+    .dashboard .container .flex-wrap{
+        /* justify-content: center; */
+    }
+
+    /* classes */
+    .show-class{
+        display: block;
+    }
+    .hide-class{
+        display: none;
+    }
+    .dflex{
+    flex-direction: column;
+    }
+    .mediaFonts{
+        *{
+            font-size: 10px !important;
+        }
+    }
+    .scroll-table-container {
+     overflow-x: auto;
+    width: 100%;
+    }
+    .attendanceMedia{
+        flex-wrap: wrap !important;
+    }
+    .attendance-box{
+        width: 40%;
+    }
+    .change-password{
+        max-width: 100%;
+    }
+}

@@ -5,8 +5,8 @@ export default function Banner() {
   return (
     <div className={style.Banner_section}>
       <div className={style.Banner}>
-        <div className="container ">
-          {/* <img src="https://i.ibb.co/1YvpHhXv/front-view-male-student-green-checkered-shirt-wearing-black-backpack-holding-files-smiling-blue-wall.png" alt="" /> */}
+        <div className="container-fluid container">
+          <img src="https://i.ibb.co/1YvpHhXv/front-view-male-student-green-checkered-shirt-wearing-black-backpack-holding-files-smiling-blue-wall.png" alt="" />
           <div className={style.banner_content}>
             <h1>gowebtech </h1>
             <h1>virtual classroom </h1>

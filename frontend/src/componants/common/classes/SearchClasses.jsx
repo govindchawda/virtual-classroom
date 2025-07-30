@@ -262,7 +262,7 @@ export default function SearchClasses() {
 
                     <div className='mt-2'>
                         <hr />
-                        <div className="d-flex mt-4">
+                        <div className="dflex flex-wrap  mt-4">
                             <div className='col-sm-3'>
                                 <label htmlFor="">Search by Tittle</label>
                                 <input onChange={() => inputValue('tittle')} type="radio" className='mx-3' name="tittle" id="" />
@@ -300,7 +300,7 @@ export default function SearchClasses() {
                         </div>
                             <button className='btn btn-info mt-3' onClick={viewclass} >Search</button>
                         <div className="mt-4 d-flex">
-                            <div className="col-sm-12 d-flex flex-wrap">
+                            <div className="col-sm-12 dflex flex-wrap">
                                 {manageClass == false ? (
                                     <>
                                         {showClass.map((items, index) => (

@@ -5,6 +5,8 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 
+const api = import.meta.env.VITE_API_BASE_URL;
+
 export default function ShowTeachers() {
   const [teachers, setTeachers] = useState([]);
   const [editingTeachers, setEditingTeachers] = useState({
@@ -117,7 +119,8 @@ export default function ShowTeachers() {
               <Link className='btn btn-primary' data-bs-toggle="modal" data-bs-target="#notstaticBackdrop"> +Add Teachers</Link>
             </div>
           </div>
-          <table className="table table-striped table-inverse table-responsive">
+          <div className='scroll-table-container'>
+          <table className="table table-striped table-inverse table-responsive ">
             <thead className="thead-inverse">
               <tr>
                 <th>S.no</th>
@@ -134,11 +137,11 @@ export default function ShowTeachers() {
                 <tr key={index}>
                   <td scope="row">{index + 1}</td>
                   <td><img width={40} src={items.profile} /></td>
-                  <td>{items.name}</td>
+                  <td className='textWrap'>{items.name}</td>
                   <td>{items.email}</td>
                   <td>{items.gender}</td>
                   <td>{items._id}</td>
-                  <td>
+                  <td className='textWrap'>
                     <button onClick={() => deleteTeacher(items._id)} className='btn btn-danger'> Delete</button>
                     <button onClick={() => editTeachers(items._id)} className='btn btn-info mx-2' data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edit</button>
                   </td>
@@ -146,6 +149,7 @@ export default function ShowTeachers() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       </div>
 

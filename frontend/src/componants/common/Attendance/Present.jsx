@@ -64,7 +64,7 @@ export default function Present() {
                     <div className='tittle color d-flex justify-content-between'>
                         <span># Show Classes</span>
                     </div>
-                    <div className='d-flex flex-wrap'>
+                    <div className='dflex flex-wrap'>
                         {classes.map((items, index) => {
                             return (
                                 <div className='col-sm-4 p-2 ' key={index}>

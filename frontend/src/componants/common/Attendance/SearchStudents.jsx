@@ -88,7 +88,7 @@ export default function SearchStudents() {
                         </div>
                     </div>
 
-                    <div className="mt-3 color d-flex flex-wrap justify-content-evenly">
+                    <div className="mt-3 color dflex flex-wrap justify-content-evenly mediaFonts">
                         {classes.map((items, index) => (
                             <div key={index} className='col-sm-5'>
                                 <div>
@@ -106,7 +106,7 @@ export default function SearchStudents() {
                     </div>
                 </div>
             </div>
-            <div class="modal fade  modal-dialog-scrollable" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal fade  modal-dialog-scrollable mediaFonts" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">

@@ -104,7 +104,21 @@ nav {
  .hearder_menu{
     display: none;
  }
-}
  .container-fluid{
         padding: 0px !important;
     }
+}
+
+
+@media (min-width:569px)and (max-width:992px){
+     .header_top_wrapper{
+    /* flex-direction: column !important; */
+    text-align: center;
+}   
+.top_info{
+    flex-direction: column;
+ }
+ .hearder_menu{
+    display: none;
+ }
+}

@@ -64,3 +64,12 @@ list-style-type: none;
     flex-direction: column;
   }
 }
+
+@media (min-width:569px)and (max-width:992px){
+   .footer_main{
+   flex-wrap: wrap;
+  }
+  .footer_box{
+    width: 50% !important;
+  }
+}

@@ -21,6 +21,7 @@ export default function ShowStudents() {
           <div className='tittle color d-flex justify-content-between'>
             <span># Show Students</span>
           </div>
+          <div className='scroll-table-container'>
           <table class="table table-striped table-inverse table-responsive">
             <thead class="thead-inverse">
               <tr>
@@ -45,6 +46,7 @@ export default function ShowStudents() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       </div>
     </>

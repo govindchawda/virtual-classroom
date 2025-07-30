@@ -102,7 +102,7 @@ export default function Student_profile() {
           <div className='tittle color'>
             # {editValue.role}
           </div>
-          <div className="user-profile color">
+          <div className="user-profile color mediaFonts">
             <div className='user-image'>
               {editValue.profile ? (
                 <img src={editValue?.profile} alt="" />) : (
@@ -119,7 +119,7 @@ export default function Student_profile() {
                 <li><a href="">Email :<span>{editValue.email}</span></a></li>
                 <li><a href="">Gender :<span>{editValue.gender}</span></a></li>
                 <li><a href="">Role :<span>{editValue.role}</span></a></li>
-                <li><a href="">Roll.No :<span>{editValue._id}</span></a></li>
+                <li><a href="" className='textWrap'>Roll.No :<span>{editValue._id}</span></a></li>
               </ul>
             </div>
             <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

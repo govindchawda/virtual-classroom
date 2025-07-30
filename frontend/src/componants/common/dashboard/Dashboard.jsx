@@ -117,7 +117,7 @@ export default function Dashboard() {
         </div>
         <div className='middlebar'>
           {student === true &&
-            <div className='leftbar'>
+            <div className={`leftbar ${showSpanTag ? "show-class" : "hide-class"}`}>
               <ul>
                 <li className='text-center'><a href="">{showSpanTag == true &&
                   <span className='leftbar-profile'>
@@ -135,7 +135,7 @@ export default function Dashboard() {
             </div>
           }
           {teacher === true &&
-            <div className='leftbar'>
+            <div className={`leftbar ${showSpanTag ? "show-class" : "hide-class"}`}>
               <ul>
                 <li className='text-center'><a href="">{showSpanTag == true &&
                   <span className='leftbar-profile'>
@@ -168,7 +168,7 @@ export default function Dashboard() {
             </div>
           }
           {admins === true &&
-            <div className='leftbar'>
+            <div className={`leftbar ${showSpanTag ? "show-class" : "hide-class"}`}>
               <div>
                 <ul className='showoptions'>
                   <li className='text-center'><a href="">{showSpanTag == true &&

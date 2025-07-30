@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 
+const api = import.meta.env.VITE_API_BASE_URL;
+
 export default function Forget() {
   const navigate = useNavigate();
   const [userValue, setUserValue] = useState({
@@ -23,7 +25,7 @@ export default function Forget() {
           "Content-Type": "application/json"
         },
       }
-      const res = await axios.post('http://localhost:4000/api/auth/resetpasswords', userValue, config);
+      const res = await axios.post(`${api}/auth/resetpasswords`, userValue, config);
       toast(res.data.message);
       if (res.data.success) {
         navigate("/login")

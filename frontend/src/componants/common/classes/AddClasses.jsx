@@ -167,7 +167,7 @@ export default function AddClasses() {
             </div>
           </div>
 
-          <form onSubmit={AddClass} className='d-flex flex-wrap'>
+          <form onSubmit={AddClass} className='dflex  flex-wrap'>
             <div className="mt-3 col-sm-6 p-2">
               <label htmlFor="">Tittle</label>
               <input type="text" name='tittle' onChange={inputHandler} className='form-control' />
@@ -191,7 +191,7 @@ export default function AddClasses() {
             </div> }
             <div className="mt-3 col-sm-12 p-2">
               <label htmlFor="">Day</label>
-              <div className='d-flex mt-3'>
+              <div className='d-flex flex-wrap mt-3'>
                 <div className='col-sm-2'><input checked={day.monday} type="checkbox" className='mx-2' onChange={inputDayHandler} name="monday" id="" /><label htmlFor="">Monday</label></div>
                 <div className='col-sm-2'><input checked={day.tuesday} type="checkbox" className='mx-2' onChange={inputDayHandler} name="tuesday" id="" /><label htmlFor="">Tuesday</label></div>
                 <div className='col-sm-2'><input checked={day.wednesday} type="checkbox" className='mx-2' onChange={inputDayHandler} name="wednesday" id="" /><label htmlFor="">Wednesday</label></div>
@@ -211,15 +211,15 @@ export default function AddClasses() {
             <div className="mt-3 col-sm-12">
               <label htmlFor="" className='alert alert-info w-100'>students</label>
               <div className='d-flex justify-content-between table'>
-                <div>Name</div>
-                <div>Roll.No</div>
-                <div>Action</div>
+                <div className='mediaFonts'>Name</div>
+                <div className='mediaFonts'>Roll.No</div>
+                <div className='mediaFonts'>Action</div>
               </div>
               {showStudent.map((items, index) => (
-                <div className='d-flex p-2 justify-content-between' key={index}>
-                  <div>{items.name}</div>
-                  <div>{items._id}</div>
-                  <div onClick={() => deleteStudents(items._id)} className='btn btn-danger'>Delete</div>
+                <div className='d-flex p-2 justify-content-between align-items-center' key={index}>
+                  <div className='mediaFonts'>{items.name}</div>
+                  <div className='mediaFonts'>{items._id}</div>
+                  <div  onClick={() => deleteStudents(items._id)} className='btn btn-danger'>Delete</div>
                 </div>
               ))}
               <label className='mt-3 btn btn-primary' data-bs-toggle="modal" data-bs-target="#exampleModal">+ Add Students</label>

@@ -75,13 +75,16 @@ export default function SearchAttendanceClass() {
                     <div className='tittle color d-flex justify-content-between'>
                         <span># Search Attendance</span>
                     </div>
-                    <div className="tittle color">
+                    <div>
+                        
+                    </div>
+                    <div className="tittle color scroll-table-container mediaFonts">
                         <table className="table table-striped table-inverse table-responsive mt-4">
                             <thead className="thead-inverse">
                                 <tr>
                                     <th>S.no</th>
                                     <th>ClassName</th>
-                                    <th>Teacher</th>
+                                    {/* <th>Teacher</th> */}
                                     <th>date</th>
                                     <th>Student</th>
                                 </tr>
@@ -91,9 +94,9 @@ export default function SearchAttendanceClass() {
                                     <tr key={index}>
                                         <td scope="row">{index + 1}</td>
                                         <td>{items.classId}</td>
-                                        <td>{items?.teacherId}</td>
-                                        <td>{items.date}</td>
-                                        <td><button className='btn btn-primary' onClick={() => ShowStudent(items._id)} data-bs-toggle="modal" href="#staticBackdrop" role="button">View Students</button></td>
+                                        {/* <td>{items?.teacherId}</td> */}
+                                        <td className='textWrap'>{items.date}</td>
+                                        <td className='textWrap'><button className='btn btn-primary' onClick={() => ShowStudent(items._id)} data-bs-toggle="modal" href="#staticBackdrop" role="button">View Students</button></td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -139,7 +142,7 @@ export default function SearchAttendanceClass() {
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="staticBackdrop2" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel2" tabindex="-1">
+            <div class="modal fade mediaFonts" id="staticBackdrop2" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel2" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
