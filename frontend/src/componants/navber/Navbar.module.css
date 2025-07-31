@@ -94,6 +94,9 @@ nav {
 
 
 @media (max-width:568px) {
+    .header_logo img{
+        width: 200px;
+    }
  .header_top_wrapper{
     flex-direction: column !important;
     text-align: center;

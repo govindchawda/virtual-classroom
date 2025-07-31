@@ -5,7 +5,7 @@ export default function Banner() {
   return (
     <div className={style.Banner_section}>
       <div className={style.Banner}>
-        <div className="container-fluid container">
+        <div className="container">
           <img src="https://i.ibb.co/1YvpHhXv/front-view-male-student-green-checkered-shirt-wearing-black-backpack-holding-files-smiling-blue-wall.png" alt="" />
           <div className={style.banner_content}>
             <h1>gowebtech </h1>
