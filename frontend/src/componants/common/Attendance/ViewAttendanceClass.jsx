@@ -102,7 +102,7 @@ export default function ViewAttendanceClass() {
             <div className="container-fluid">
                 <div className="container">
                     <div className='tittle color d-flex justify-content-between'>
-                        <span># Show Attendance</span>
+                        <span># Add Attendance</span>
                     </div>
                     <div className="mt-4 tittle color mediaFonts">
                         <form action="" onSubmit={submitAttendance}>

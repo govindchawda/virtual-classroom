@@ -292,13 +292,31 @@ ul li:hover{
     text-wrap: nowrap;
 }
 
-
-@media (max-width:568px){
+@media (max-width:992px){
+ .scroll-table-container {
+     overflow-x: auto;
+    width: 100%;
+    }
+     .attendance-box{
+        width: 40%;
+        font-size: 16px;
+    }
+     .leftbar{
+        position: absolute;
+        height: auto;
+    }
+     .show-class{
+        display: block;
+    }
+    .hide-class{
+        display: none;
+    }
+}
+@media (max-width:768px){
     .topbae-logo{
         width: 50%;
     }
     .color{
-        /* flex-direction: column; */
         text-align: center;
     }
     .leftbar{
@@ -306,15 +324,8 @@ ul li:hover{
         height: auto;
     }
     .rightbar{
-        /* margin-left: 40px; */
         padding: 0px;
-    }
-    .dashboard .container .flex-wrap{
-        /* justify-content: center; */
-    }
-
-    /* classes */
-    .show-class{
+    }.show-class{
         display: block;
     }
     .hide-class{

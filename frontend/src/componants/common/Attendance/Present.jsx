@@ -67,7 +67,7 @@ export default function Present() {
                     <div className='dflex flex-wrap'>
                         {classes.map((items, index) => {
                             return (
-                                <div className='col-sm-4 p-2 ' key={index}>
+                                <div className='col-sm-12 col-12 col-md-6 col-lg-4 p-2 ' key={index}>
                                     <div className="col-sm-12 color pb-2">
                                         <div className="col-sm-12 tittle color">
                                             <div className='class-info d-flex justify-content-between'>
@@ -82,7 +82,7 @@ export default function Present() {
                                                 <p><strong>Tittle : </strong>{items.tittle} </p>
                                             </div>
                                         </div>
-                                        <div className="d-flex justify-content-between px-3">
+                                        <div className="d-flex flex-wrap justify-content-between px-3">
                                             <Link to={`/overview/attendance/${items._id}@qwert`} className='btn btn-primary text-light'>Attendance</Link>
                                             <Link to={`/overview/showattendance/${items._id}@qwert`} className='btn btn-secondary text-light'>Show Attendance</Link>
                                         </div>

@@ -263,19 +263,19 @@ export default function SearchClasses() {
                     <div className='mt-2'>
                         <hr />
                         <div className="dflex flex-wrap  mt-4">
-                            <div className='col-sm-3'>
+                            <div className='col-sm-6 col-12 col-md-6 col-lg-3'>
                                 <label htmlFor="">Search by Tittle</label>
                                 <input onChange={() => inputValue('tittle')} type="radio" className='mx-3' name="tittle" id="" />
                             </div>
-                            <div className="col-sm-3">
+                            <div className="col-sm-6 col-12 col-md-6 col-lg-3">
                                 <label htmlFor="">Search by classCode</label>
                                 <input onChange={() => inputValue('classId')} type="radio" className='mx-3' name="tittle" id="" />
                             </div>
-                            <div className="col-sm-3">
+                            <div className="col-sm-6 col-12 col-md-6 col-lg-3">
                                 <label htmlFor="">Search by Teacher</label>
                                 <input onChange={() => inputValue('TeacherId')} className='mx-2' type="radio" name="tittle" id="" />
                             </div>
-                            <div className="col-sm-3">
+                            <div className="col-sm-6 col-12 col-md-6 col-lg-3">
                                 <label htmlFor="">Search by Time</label>
                                 <input onChange={() => inputValue('time')} type="radio" className='mx-3' name="tittle" id="" />
                             </div>
@@ -300,11 +300,11 @@ export default function SearchClasses() {
                         </div>
                             <button className='btn btn-info mt-3' onClick={viewclass} >Search</button>
                         <div className="mt-4 d-flex">
-                            <div className="col-sm-12 dflex flex-wrap">
+                            <div className="col-sm-12 d-flex flex-wrap">
                                 {manageClass == false ? (
                                     <>
                                         {showClass.map((items, index) => (
-                                            <div className='col-sm-4 p-2 ' key={index}>
+                                            <div className='col-sm-12 col-md-6 col-lg-4 col-12 p-2 ' key={index}>
                                                 <div className="col-sm-12 color pb-2">
                                                     <div className="col-sm-12  tittle color">
                                                         <div className='class-info d-flex justify-content-between'>

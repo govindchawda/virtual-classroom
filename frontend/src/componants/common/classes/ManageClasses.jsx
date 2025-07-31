@@ -249,7 +249,7 @@ export default function ManageClasses() {
                     <div className='dflex flex-wrap'>
                         {classes.map((items, index) => {
                             return (
-                                <div className='col-sm-4 p-2 ' key={index}>
+                                <div className='col-sm-12 col-md-6  col-12 col-lg-4 p-2 ' key={index}>
                                     <div className="col-sm-12 color pb-2">
                                         <div className="col-sm-12 tittle color">
                                             <div className='class-info d-flex justify-content-between'>
@@ -334,15 +334,15 @@ export default function ManageClasses() {
                                     </div>}
                                 <div className="mt-3">
                                     <label htmlFor="" className='alert alert-info w-100'>students</label>
-                                    <div className='dflex justify-content-between table'>
+                                    <div className='d-flex justify-content-between table'>
                                         <div className='mediaFonts'>Name</div>
                                         <div className='mediaFonts'>Roll.No</div>
                                         <div className='mediaFonts'>Action</div>
                                     </div>
                                     {student.map((items, index) => (
-                                        <div className='d-flex p-2 justify-content-between' key={index}>
-                                            <div className='mediaFonts'>{items.name}</div>
-                                            <div className='mediaFonts'>{items._id}</div>
+                                        <div className='mediaFonts d-flex p-2 justify-content-between' key={index}>
+                                            <div>{items.name}</div>
+                                            <div>{items._id}</div>
                                             <div onClick={() => deleteStudents(items._id)} className='btn btn-danger'>Delete</div>
                                         </div>
                                     ))}

@@ -39,12 +39,12 @@ export default function ViewClasses() {
             <span># view Classes</span>
           </div>
           <div className="color tittle">
-            <div className="dflex flex-wrap mediaFonts justify-content-between">
-              <div className="col-sm-7 teachers mt-2 p-3">
+            <div className="col-12 d-flex flex-wrap mediaFonts justify-content-between">
+              <div className="col-sm-12 col-12 col-md-12 col-lg-7 teachers mt-2 p-3">
                 {Array.isArray(classes.schedule) && classes.schedule.length > 0 && (
                   <>
                     <div className='d-flex  justify-content-between'>
-                      <div className='col-sm-6'>
+                      <div className='col-sm-4'>
                         <h6 >Start Time</h6>
                         {classes?.schedule[0]?.startTime}
                       </div>
