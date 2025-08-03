@@ -90,6 +90,7 @@ import style from './Login.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+import { useEffect } from 'react';
 
 const api = import.meta.env.VITE_API_BASE_URL;
 
@@ -99,6 +100,12 @@ export default function Login() {
     email: "",
     password: ""
   });
+
+  useEffect(()=>{
+    const name = "gowebtech";
+    axios.post(`${api}/googleMeeting/create`,name);
+  },[]);
+
   const inputHandler = (event) => {
     setLoginValue({ ...loginValue, [event.target.name]: event.target.value });
   }

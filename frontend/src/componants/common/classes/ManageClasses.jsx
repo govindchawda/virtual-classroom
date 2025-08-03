@@ -236,6 +236,17 @@ export default function ManageClasses() {
         });
     }, []);
 
+
+    console.log("userObjectId",userObjectId)
+    // janrate google meeting
+     const createMeeting = async (id) => {
+         const meetLink = "https://meet.google.com/new"; // This always creates a new meet, but opens for the current user only
+         const newUrl = {meetLink:meetLink,classId:id}
+         console.log("newUrl",newUrl)
+         const res = await axios.post(`${api}/googleMeeting/create`,newUrl);
+         console.log("res.data",res.data)
+  window.open(meetLink, "_blank");
+    }
     return (
         <>
             <div className="container-fluid">
@@ -261,7 +272,8 @@ export default function ManageClasses() {
                                             </div>
                                             <div className='class-info d-flex justify-content-between'>
                                                 <p><strong>Section : </strong> {items.section} </p>
-                                                <p><strong>Tittle : </strong>{items.tittle} </p>
+                                                <p><strong>Tittle : </strong>   {items.tittle} </p>
+                                               <button onClick={()=> createMeeting(items._id)}  className='btn btn-info'>Join</button>
                                             </div>
                                         </div>
                                         <div className="d-flex justify-content-between px-3">

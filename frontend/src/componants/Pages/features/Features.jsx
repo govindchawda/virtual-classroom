@@ -30,10 +30,47 @@ const features = [
 ];
 
 const Features = () => {
+  const handleClick = () => {
+  const meetLink = "https://meet.google.com/new"; // This always creates a new meet, but opens for the current user only
+  window.open(meetLink, "_blank");
+};
+
+
+
+  const calendar = google.calendar({version: 'v3', auth: oAuth2Client});
+
+const event = {
+  summary: 'Test Meeting',
+  start: {dateTime: '2025-08-04T10:00:00+05:30'},
+  end: {dateTime: '2025-08-04T10:30:00+05:30'},
+  conferenceData: {
+    createRequest: {
+      requestId: 'sample123',
+      conferenceSolutionKey: {
+        type: 'hangoutsMeet',
+      },
+    },
+  },
+};
+
+calendar.events.insert({
+  calendarId: 'primary',
+  resource: event,
+  conferenceDataVersion: 1,
+}, (err, res) => {
+  if (err) return console.error('Error: ', err);
+  const meetLink = res.data.hangoutLink;
+  console.log('Google Meet link:', meetLink);
+});
   return (
     <Tab.Container defaultActiveKey="whiteboard">
-      <Row className="p-4">
-        {/* Left Nav */}
+      <button onClick={handleClick}>Generate Google Meet Link</button>
+
+
+    <a href="https://meet.google.com/new" target="_blank">
+  <button>Create Google Meet</button>
+</a>
+      {/* <Row className="p-4">
         <Col sm={3} className="border-end">
           <Nav variant="pills" className="flex-column">
             {features.map((f) => (
@@ -48,7 +85,6 @@ const Features = () => {
           <Button variant="success" className="mt-4 w-100">GET 30-DAYS FREE TRIAL</Button>
         </Col>
 
-        {/* Right Content */}
         <Col sm={9}>
           <Tab.Content>
             {features.map((f) => (
@@ -56,7 +92,6 @@ const Features = () => {
                 <h4 className="text-success">{f.label}</h4>
                 <p>{f.description}</p>
 
-                {/* Image or demo content */}
                 {f.key === "whiteboard" && (
                   <div className="d-flex gap-4 mt-4">
                     <img src="/images/whiteboard-screenshot.png" alt="Whiteboard" className="img-fluid w-50 rounded shadow" />
@@ -75,7 +110,7 @@ const Features = () => {
             ))}
           </Tab.Content>
         </Col>
-      </Row>
+      </Row> */}
     </Tab.Container>
   );
 };
