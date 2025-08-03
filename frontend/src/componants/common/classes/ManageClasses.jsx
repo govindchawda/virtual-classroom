@@ -240,12 +240,21 @@ export default function ManageClasses() {
     console.log("userObjectId",userObjectId)
     // janrate google meeting
      const createMeeting = async (id) => {
+
+         const response = await axios.get(`${api}/googleMeeting/get/${id}`);
+            if(!response){
+                alert("hii");
+            }
+            alert("hello");
+         console.log("response",response);
+
+
          const meetLink = "https://meet.google.com/new"; // This always creates a new meet, but opens for the current user only
          const newUrl = {meetLink:meetLink,classId:id}
          console.log("newUrl",newUrl)
          const res = await axios.post(`${api}/googleMeeting/create`,newUrl);
          console.log("res.data",res.data)
-  window.open(meetLink, "_blank");
+        window.open(meetLink, "_blank");
     }
     return (
         <>
