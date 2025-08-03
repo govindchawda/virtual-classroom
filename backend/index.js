@@ -18,10 +18,17 @@ const port = process.env.PORT || 4000;
 connectionDb();
  
 app.use(cors());      
+
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://virtual-classroom-frontend.onrender.com'
+];
+
 app.use(cors({
-  origin: ["http://localhost:5173", "https://virtual-classroom-frontend.onrender.com"],
-  credentials: true,
-}))  
+  origin: allowedOrigins,
+  credentials: true
+}));
+
 // app.use(cors({ origin: "https://virtual-classroom-frontend.onrender.com" }));
 app.use(express.json({ limit: '50mb' })); 
 app.use(express.urlencoded({ limit: '50mb', extended: true }));

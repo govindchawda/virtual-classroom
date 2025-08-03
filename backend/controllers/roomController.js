@@ -38,8 +38,8 @@ const getRoom = async (req,res) => {
                 message: 'require fields'
             });
         }
-        console.log("meetingLink,classId",meetingLink,classId)
-        const result = await roomModel.create({meetingLink,classId});
+        // console.log("meetingLink,classId",meetingLink,classId)
+        const result = await roomModel.find();
        if (!result) {
             return res.status(500).json({
                 success: false,
@@ -50,7 +50,7 @@ const getRoom = async (req,res) => {
         return res.status(202).json({
             success: true,
             message: "meeting is successfully created",
-            result
+            // result
         });
     } catch (error) {
         console.log(error,"create meeting classs error");
