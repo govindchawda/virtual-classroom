@@ -240,7 +240,9 @@ export default function ManageClasses() {
     console.log("userObjectId",userObjectId)
     // janrate google meeting
      const createMeeting = async (id) => {
-
+        if(!id){
+            return alert("id not found");
+        }
          const response = await axios.get(`${api}/googleMeeting/get/${id}`);
             if(!response){
                 alert("hii");

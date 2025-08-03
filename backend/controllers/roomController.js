@@ -31,10 +31,11 @@ const createRoom = async (req,res) => {
 const getRoom = async (req,res) => {
     try {
         const {id} = req.params.id;
+        console.log("id",id)
          if(!id){
          return res.status(400).json({
                 success: false,
-                message: ' require fields'
+                message: 'require fields'
             });
         }
         console.log("meetingLink,classId",meetingLink,classId)
