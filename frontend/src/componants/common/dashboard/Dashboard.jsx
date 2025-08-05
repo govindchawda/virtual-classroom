@@ -19,6 +19,8 @@ import { FaUsers } from "react-icons/fa";
 import { IoIosArrowForward } from 'react-icons/io';
 import { MdCoPresent } from "react-icons/md";
 import { MdOutlineChat } from "react-icons/md";
+import { MdCreateNewFolder } from "react-icons/md";
+
 
 const api = import.meta.env.VITE_API_BASE_URL;
 
@@ -161,7 +163,7 @@ export default function Dashboard() {
                 </li>
                 <li><Link to="ShowStuden"><MdFeedback />{showSpanTag == true && <span>Students</span>}</Link></li>
                       <li><a href=""><BsChatRightTextFill />{showSpanTag == true && <span>Message </span>}</a></li>
-                <li><a href=""><BsFillPersonLinesFill />{showSpanTag == true && <span>Online Class</span>}</a></li>
+                <li><Link to="janrate-link"><MdCreateNewFolder />{showSpanTag == true && <span>Generat Link</span>}</Link></li>
                 <li><a href=""><MdFeedback />{showSpanTag == true && <span>Send feedback</span>}</a></li>
                 <li><Link to="change-password"><RiLockPasswordFill />{showSpanTag == true && <span>Change Password</span>}</Link></li>
               </ul>
@@ -204,7 +206,7 @@ export default function Dashboard() {
                   </li>
                   <li><a href=""><BsChatRightTextFill />{showSpanTag == true && <span>Message </span>}</a></li>
                   {/* <li><Link to="Attendance"><MdOutlineChat />{showSpanTag == true && <span>Attendance</span>}</Link></li> */}
-                  <li><a href=""><MdOutlineChat />{showSpanTag == true && <span>Chat Boards</span>}</a></li>
+                  <li><Link to="janrate-link"><MdCreateNewFolder />{showSpanTag == true && <span>Generat Link</span>}</Link></li>
                   <li><a href=""><MdAssignment />{showSpanTag == true && <span>Assignment</span>}</a></li>
                   <li><a href=""><MdFeedback />{showSpanTag == true && <span>feedback's</span>}</a></li>
                   <li><Link to="change-password"><RiLockPasswordFill />{showSpanTag == true && <span>Change Password</span>}</Link></li>

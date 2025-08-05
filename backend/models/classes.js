@@ -9,15 +9,24 @@ const classSchema = mongoose.Schema({
         type: String,
         require: [true, "classCode is required"]
     },
-    section: {
-        type: String,
-        require: [true, "section is required"],
-        default: "A",
-        enum: ["A", "B", "C"]
-    },
+    // section: {
+    //     type: String,
+    //     require: [true, "section is required"],
+    //     default: "A",
+    //     enum: ["A", "B", "C"]
+    // },
     teacherId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "register"
+    },
+    meeting: {
+        type: String,
+        require: [true, "section is required"],
+    },
+    joinRoom: {
+        type: Boolean,
+        required: [true, "joinRoom is required"],
+        default: false
     },
     students: [
         {

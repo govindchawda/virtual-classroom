@@ -4,14 +4,15 @@ const roomModel = require("../models/room");
 const createRoom = async (req,res) => {
     try {
         const {meetingLink,classId} = req.body;
+        console.log("meetingLink,classId",meetingLink,classId)
         if(!meetingLink || !classId){
-         return res.status(400).json({
+         return res.status(500).json({
                 success: false,
-                message: ' require fields'
+                message: 'require all fields'
             });
         }
-        console.log("meetingLink,classId",meetingLink,classId)
         const result = await roomModel.create({meetingLink,classId});
+        console.log("result",result)
        if (!result) {
             return res.status(500).json({
                 success: false,
@@ -56,9 +57,47 @@ const getRoom = async (req,res) => {
         console.log(error,"create meeting classs error");
     }
 }
+const deleteRoom = async (req,res) => {
+    try {
+        const id = req.params.id;
+         if(!id){
+         return res.status(400).json({
+                success: false,
+                message: 'require fields'
+            });
+        }
+        // console.log("meetingLink,classId",meetingLink,classId)
+        const allRoom = await roomModel.find();
+        
+        const clas = allRoom.filter((items)=>{
+            return items.classId == id;
+        });
+
+        if (!clas) {
+            return res.status(500).json({
+                success: false,
+                message: "internal server error"
+            });
+        }
+        if(clas._id){
+            const deletetRoom = await roomModel.findByIdAndDelete({_id:clas._id});
+            console.log("deleteRoom",deletetRoom);
+        }
+        
+        console.log("hii",clas);
+        return res.status(202).json({
+            success: true,
+            message: "meeting is successfully created",
+            // result
+        });
+    } catch (error) {
+        console.log(error,"create123 meeting classs error");
+    }
+}
 
 
 module.exports = {
     createRoom,
-    getRoom
+    getRoom,
+    deleteRoom
 }

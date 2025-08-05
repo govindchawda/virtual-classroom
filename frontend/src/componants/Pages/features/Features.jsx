@@ -37,39 +37,39 @@ const Features = () => {
 
 
 
-  const calendar = google.calendar({version: 'v3', auth: oAuth2Client});
+//   const calendar = google.calendar({version: 'v3', auth: oAuth2Client});
 
-const event = {
-  summary: 'Test Meeting',
-  start: {dateTime: '2025-08-04T10:00:00+05:30'},
-  end: {dateTime: '2025-08-04T10:30:00+05:30'},
-  conferenceData: {
-    createRequest: {
-      requestId: 'sample123',
-      conferenceSolutionKey: {
-        type: 'hangoutsMeet',
-      },
-    },
-  },
-};
+// const event = {
+//   summary: 'Test Meeting',
+//   start: {dateTime: '2025-08-04T10:00:00+05:30'},
+//   end: {dateTime: '2025-08-04T10:30:00+05:30'},
+//   conferenceData: {
+//     createRequest: {
+//       requestId: 'sample123',
+//       conferenceSolutionKey: {
+//         type: 'hangoutsMeet',
+//       },
+//     },
+//   },
+// };
 
-calendar.events.insert({
-  calendarId: 'primary',
-  resource: event,
-  conferenceDataVersion: 1,
-}, (err, res) => {
-  if (err) return console.error('Error: ', err);
-  const meetLink = res.data.hangoutLink;
-  console.log('Google Meet link:', meetLink);
-});
+// calendar.events.insert({
+//   calendarId: 'primary',
+//   resource: event,
+//   conferenceDataVersion: 1,
+// }, (err, res) => {
+//   if (err) return console.error('Error: ', err);
+//   const meetLink = res.data.hangoutLink;
+//   console.log('Google Meet link:', meetLink);
+// });
   return (
     <Tab.Container defaultActiveKey="whiteboard">
       <button onClick={handleClick}>Generate Google Meet Link</button>
 
 
-    <a href="https://meet.google.com/new" target="_blank">
+    {/* <a href="https://meet.google.com/new" target="_blank">
   <button>Create Google Meet</button>
-</a>
+</a> */}
       {/* <Row className="p-4">
         <Col sm={3} className="border-end">
           <Nav variant="pills" className="flex-column">

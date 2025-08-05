@@ -126,6 +126,7 @@ const Present = lazy(() => import('./componants/common/Attendance/Present.jsx'))
 const ViewAttendanceClass = lazy(() => import('./componants/common/Attendance/ViewAttendanceClass.jsx'));
 const SearchAttendanceClass = lazy(() => import('./componants/common/Attendance/SearchAttendanceClass.jsx'));
 const SearchStudents = lazy(() => import('./componants/common/Attendance/SearchStudents.jsx'));
+const JanrateLink = lazy(()=> import('./componants/common/janrate_link/JanrateLink.jsx'));
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -154,6 +155,7 @@ createRoot(document.getElementById('root')).render(
             <Route path='classes/:id/add-class' element={<AddClasses />} />
             <Route path='ShowStuden' element={<ShowStudents />} />
             <Route path='searchClasses' element={<SearchClasses />} />
+            <Route path='janrate-link' element={<JanrateLink />} />
           </Route>
 
           <Route path='/overview' element={<Dashboard />}>

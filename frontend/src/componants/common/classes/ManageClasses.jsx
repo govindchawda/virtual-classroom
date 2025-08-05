@@ -14,7 +14,7 @@ export default function ManageClasses() {
         _id: "",
         tittle: "",
         classCode: "",
-        section: "",
+        meeting: "",
         teacherId: "",
         students: [],
         schedule: [
@@ -57,7 +57,7 @@ export default function ManageClasses() {
                 }
             });
             toast(res.data.message);
-        } catch (error) {
+        } catch (   error) {
             console.log("delete classes error" + error);
         }
     }
@@ -282,9 +282,9 @@ export default function ManageClasses() {
                                                 <p className=''><strong>Day : </strong> {items.schedule[0].day.join(',')}</p>
                                             </div>
                                             <div className='class-info d-flex justify-content-between'>
-                                                <p><strong>Section : </strong> {items.section} </p>
+                                                {/* <p><strong>meeting : </strong> {items.meeting} </p> */}
                                                 <p><strong>Tittle : </strong>   {items.tittle} </p>
-                                               <button onClick={()=> createMeeting(items._id)}  className='btn btn-info'>Join</button>
+                                               {/* <button onClick={()=> createMeeting(items._id)}  className='btn btn-info'>Join</button> */}
                                             </div>
                                         </div>
                                         <div className="d-flex justify-content-between px-3">
@@ -323,8 +323,8 @@ export default function ManageClasses() {
                                     <input type="text" name='classCode' value={updateClass?.classCode} className='form-control' onChange={inputHandler} />
                                 </div>
                                 <div className="mt-3">
-                                    <label htmlFor="">section</label>
-                                    <input type="text" name='section' value={updateClass?.section} className='form-control' onChange={inputHandler} />
+                                    <label htmlFor="">meeting</label>
+                                    <input type="text" name='meeting' value={updateClass?.meeting} className='form-control' onChange={inputHandler} />
                                 </div>
                                 <div className="mt-3 p-2 select-option">
                                     <label htmlFor="Day">Day</label>

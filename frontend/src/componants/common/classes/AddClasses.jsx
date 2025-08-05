@@ -14,7 +14,7 @@ export default function AddClasses() {
   const [classes, setClasses] = useState({
     tittle: "",
     classCode: "",
-    section: "",
+    meeting: "",
     teacherId: "",
     students: [],
     schedule: [
@@ -177,8 +177,8 @@ export default function AddClasses() {
               <input type="text" name='classCode' className='form-control' onChange={inputHandler} />
             </div>
             <div className="mt-3 col-sm-12 col-lg-6 p-2">
-              <label htmlFor="">section</label>
-              <input type="text" name='section' className='form-control' onChange={inputHandler} />
+              <label htmlFor="">meeting</label>
+              <input type="text" name='meeting' className='form-control' onChange={inputHandler} />
             </div>
             {showTeacherOption.role === "admin" ?
             <div className="mt-3 col-sm-12 col-lg-6 p-2">

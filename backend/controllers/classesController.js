@@ -2,7 +2,7 @@ const classModel = require("../models/classes");
 
 const createClass = async (req, res) => {
     try {
-        const { tittle, students, schedule, teacherId, classCode, section } = req.body;
+        const { tittle, students, schedule, teacherId, classCode, meeting} = req.body;
         if (!tittle || !teacherId || !students || !classCode) {
             return res.status(400).json({
                 success: false,
@@ -10,7 +10,15 @@ const createClass = async (req, res) => {
             });
         }
 
-        const classes = classModel({ tittle, teacherId, students, schedule, classCode, section });
+        const  exsistMeeting = await classModel.findOne({meeting});
+        if (exsistMeeting) {
+            return res.status(202).json({
+                success: false,
+                message: "meetingLink is already exist"
+            })
+        }
+
+        const classes = classModel({ tittle, teacherId, students, schedule, classCode, meeting });
         const result = await classes.save();
         if (!result) {
             return res.status(500).json({
@@ -98,14 +106,14 @@ const editClass = async (req, res) => {
 // UPDATE CLASSES
 const updateClass = async (req, res) => {
     try {
-        const { _id, tittle, students, schedule, teacherId, classCode, section } = req.body;
+        const { _id, tittle, students, schedule, teacherId, classCode, meeting } = req.body;
         if (!_id) {
             return res.status(400).json({
                 success: false,
                 message: "class is not found"
             });
         }
-        const result = await classModel.findByIdAndUpdate(_id, { tittle, students, schedule, teacherId, section, classCode });
+        const result = await classModel.findByIdAndUpdate(_id, { tittle, students, schedule, teacherId, meeting, classCode });
         if (!result) {
             return res.status(404).json({
                 success: false,
@@ -275,6 +283,61 @@ const showClassIncludeTeachers = async (req, res) => {
         console.log("show classes includ ace", error);
     }
 }
+
+// DISCONNECT IN Class
+const disconnectMeeting = async (req, res) => {
+    try {
+        const id = req.params.id;
+        if(!req.params.id){
+            return res.status(500).json({
+                success: false,
+                message: "id has not passed"
+            });
+        }
+        const result = await classModel.findByIdAndUpdate({_id:req.params.id},{joinRoom:false});
+             if (!result) { 
+            return res.status(500).json({
+                success: false,
+                message: "internal server error"
+            });
+        }
+        return res.status(200).json({
+            success:true,
+            message:"meeting is disconnect",
+            result
+        })
+
+    } catch (error) {
+        console.log("show classes includ ace", error);
+    }
+}
+
+// ACTIVE MEETING LINK IN Class
+const activeMeeting = async (req, res) => {
+    try {
+        const id = req.params.id;
+        if(!req.params.id){
+            return res.status(500).json({
+                success: false,
+                message: "id has not passed"
+            });
+        }
+        const result = await classModel.findByIdAndUpdate({_id:req.params.id},{joinRoom:true});
+      if (!result) { 
+            return res.status(500).json({
+                success: false,
+                message: "internal server error"
+            });
+        }
+        return res.status(200).json({
+            success:true,
+            message:"meeting is connect",
+            result
+        })
+    } catch (error) {
+        console.log("show classes includ ace", error);
+    }
+}
 module.exports = {
     createClass,
     deleteClass,
@@ -284,5 +347,7 @@ module.exports = {
     deletStudentFromClasses,
     AddStudentForClasses,
     showClassIncludeStudents,
-    showClassIncludeTeachers
+    showClassIncludeTeachers,
+    disconnectMeeting,
+    activeMeeting
 }

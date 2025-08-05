@@ -1,5 +1,5 @@
 const express = require("express");
-const { createClass, deleteClass, getAllClass, editClass, updateClass, deletStudentFromClasses, AddStudentForClasses, showClassIncludeStudents, showClassIncludeTeachers} = require("../controllers/classesController");
+const { createClass, deleteClass, getAllClass, editClass, updateClass, deletStudentFromClasses, AddStudentForClasses, showClassIncludeStudents, showClassIncludeTeachers, disconnectMeeting, activeMeeting} = require("../controllers/classesController");
 const authMiddleware = require("../middlewares/authMiddleware");
 const classRoute =  express.Router();
 
@@ -29,5 +29,12 @@ classRoute.get("/showClassIncludeStudents/:id",  showClassIncludeStudents);
 
 // SHOW Teachers INCLUDES FROM CLASSES
 classRoute.get("/showClassIncludeTeachers/:id",  showClassIncludeTeachers);
+
+
+// Disconnect metting
+classRoute.put("/disconnect/:id",  disconnectMeeting);
+
+// ACTIVE  MEETING LINK
+classRoute.put("/active/:id",  activeMeeting);
 
 module.exports = classRoute;

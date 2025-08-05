@@ -1,5 +1,5 @@
 const express = require("express");
-const { createRoom, getRoom } = require("../controllers/roomController");
+const { createRoom, getRoom, deleteRoom } = require("../controllers/roomController");
 const roomRouter = express.Router();
 
 
@@ -9,7 +9,7 @@ roomRouter.post("/create",createRoom);
 // CREATE MEETING
 roomRouter.get("/get/:id",getRoom);
 
-// CREATE MEETING
-roomRouter.delete("/delete",createRoom);
+// dDELETET MEETING    
+roomRouter.delete("/delete/:id",deleteRoom);
 
 module.exports = roomRouter;

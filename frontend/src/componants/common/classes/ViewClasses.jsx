@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
 const api = import.meta.env.VITE_API_BASE_URL;
 
 export default function ViewClasses() {
@@ -14,7 +15,7 @@ export default function ViewClasses() {
         "Authorization": "bearer " + localStorage.getItem("tokeId")
       }
     }).then((res) => {
-      setClasses(res.data.result)
+      setClasses(res.data.result);
     }).catch((error) => console.log("view classes error", error))
   }, [data.id]);
 
@@ -30,13 +31,55 @@ export default function ViewClasses() {
       }).catch((error) => console.log("show teacher in classes error", error))
     }
   }, [classes.teacherId]);
-  
+
+
+
+  // janrate google meeting
+  const createMeeting = async (meetLink,id) => {
+    try {
+      if(!id){
+        return toast.error("id not get");
+      }
+      const res = await axios.put(`${api}/classes/active/${id}`);
+      if (!res) {
+        return toast.error("internal server error")
+      }
+      toast(res.data.message);
+      window.open(meetLink, "_blank");
+        const response = await axios.get(`${api}/classes/edit/${data.id}`, {
+      headers: {
+        "Authorization": "bearer " + localStorage.getItem("tokeId")
+      }
+    })
+      setClasses(response.data.result);
+      // const res = await axios.post(`${api}/googleMeeting/create`);
+      // console.log("res.data",res.data)
+    } catch (error) {
+      console.log("createMeeting in classes error", error)
+    }
+  }
+
+  // disConnectMeeting class
+  const disConnectMeeting = async (id) => {
+    const res = await axios.put(`${api}/classes/disconnect/${id}`);
+    if (!res) {
+      return toast.error("internal server error")
+    }
+    const response = await axios.get(`${api}/classes/edit/${data.id}`, {
+      headers: {
+        "Authorization": "bearer " + localStorage.getItem("tokeId")
+      }
+    })
+      setClasses(response.data.result);
+    toast(res.data.message);
+  }
+
   return (
     <>
       <div className="container-fluid">
         <div className="container">
           <div className='tittle color d-flex justify-content-between'>
-            <span># view Classes</span>
+            <span># view Classes </span>
           </div>
           <div className="color tittle">
             <div className="col-12 d-flex flex-wrap mediaFonts justify-content-between">
@@ -80,6 +123,17 @@ export default function ViewClasses() {
                     </>
                   )}
                 </div>
+                <div className='d-flex justify-content-between mt-4'>
+                  <div className='col-sm-5'>
+                    <button onClick={() => createMeeting(classes?.meeting,classes?._id)} className='btn btn-primary'>Join Class</button>
+                  </div>
+                  {classes?.joinRoom != false ? 
+                   <div className='col-sm-5'>
+                    <button onClick={() => disConnectMeeting(classes?._id)} className='btn btn-primary'>Disconnect Class</button>
+                  </div> : ''  
+                }
+          
+                </div>
 
               </div>
               <div className="col-sm-4 teachers p-3">
@@ -101,6 +155,7 @@ export default function ViewClasses() {
 
         </div>
       </div>
+      <ToastContainer />
     </>
   )
 }
