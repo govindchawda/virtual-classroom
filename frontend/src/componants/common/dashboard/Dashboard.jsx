@@ -20,6 +20,7 @@ import { IoIosArrowForward } from 'react-icons/io';
 import { MdCoPresent } from "react-icons/md";
 import { MdOutlineChat } from "react-icons/md";
 import { MdCreateNewFolder } from "react-icons/md";
+import { CgNotes } from "react-icons/cg";
 
 
 const api = import.meta.env.VITE_API_BASE_URL;
@@ -132,6 +133,7 @@ export default function Dashboard() {
                 <li><a href=""><BsFillPersonLinesFill />{showSpanTag == true && <span>Online Class</span>}</a></li>
                 <li><a href=""><MdAssignment />{showSpanTag == true && <span>Send Assignment</span>}</a></li>
                 <li><a href=""><MdFeedback />{showSpanTag == true && <span>Send feedback</span>}</a></li>
+                <li><Link to="terms-condition"><CgNotes />{showSpanTag == true && <span>Policy</span>}</Link></li>
                 <li><Link to="change-password"><RiLockPasswordFill />{showSpanTag == true && <span>Change Password</span>}</Link></li>
               </ul>
             </div>

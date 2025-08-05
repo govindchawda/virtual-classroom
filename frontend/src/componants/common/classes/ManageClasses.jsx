@@ -25,7 +25,7 @@ export default function ManageClasses() {
             }
         ]
     })
-
+    
     // GET ALL CLASSES
     useEffect(() => {
         // admin

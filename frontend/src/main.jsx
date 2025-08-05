@@ -127,6 +127,7 @@ const ViewAttendanceClass = lazy(() => import('./componants/common/Attendance/Vi
 const SearchAttendanceClass = lazy(() => import('./componants/common/Attendance/SearchAttendanceClass.jsx'));
 const SearchStudents = lazy(() => import('./componants/common/Attendance/SearchStudents.jsx'));
 const JanrateLink = lazy(()=> import('./componants/common/janrate_link/JanrateLink.jsx'));
+const Terms_condition = lazy(()=> import('./componants/common/terms_condition/Terms_condition.jsx'));
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -146,6 +147,7 @@ createRoot(document.getElementById('root')).render(
             <Route path='profile' element={<Student_profile />} />
             <Route path='change-password' element={<Change_password />} />
             <Route path='/overview/view-class/:id@qywvsg' element={<ViewClass />} />
+            <Route path='terms-condition' element={<Terms_condition />} />
           </Route>
 
           <Route path='/overview' element={<Dashboard />}>
