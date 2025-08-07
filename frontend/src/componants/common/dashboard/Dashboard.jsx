@@ -128,7 +128,7 @@ export default function Dashboard() {
                     <b>{user.name}</b>
                   </span>
                 }</a></li>
-                <li><a href=""><BsChatRightTextFill />{showSpanTag == true && <span>Message </span>}</a></li>
+                <li><Link to="chatSection"><BsChatRightTextFill />{showSpanTag == true && <span>Message </span>}</Link></li>
                 <li><Link to={`/overview/view-class/${user._id}@qywvsg`}><BsFillPersonLinesFill />{showSpanTag == true && <span>Classes</span>}</Link></li>
                 <li><a href=""><BsFillPersonLinesFill />{showSpanTag == true && <span>Online Class</span>}</a></li>
                 <li><a href=""><MdAssignment />{showSpanTag == true && <span>Send Assignment</span>}</a></li>
@@ -164,7 +164,7 @@ export default function Dashboard() {
                     </div>}
                 </li>
                 <li><Link to="ShowStuden"><MdFeedback />{showSpanTag == true && <span>Students</span>}</Link></li>
-                      <li><a href=""><BsChatRightTextFill />{showSpanTag == true && <span>Message </span>}</a></li>
+                 <li><Link to="chatSection"><BsChatRightTextFill />{showSpanTag == true && <span>Message </span>}</Link></li>
                 <li><Link to="janrate-link"><MdCreateNewFolder />{showSpanTag == true && <span>Generat Link</span>}</Link></li>
                 <li><a href=""><MdFeedback />{showSpanTag == true && <span>Send feedback</span>}</a></li>
                 <li><Link to="change-password"><RiLockPasswordFill />{showSpanTag == true && <span>Change Password</span>}</Link></li>
@@ -206,7 +206,7 @@ export default function Dashboard() {
                         <div className='li'><Link to="searchattendance"><MdOutlineManageSearch />{showSpanTag == true && <span>Search Attendance</span>}</Link></div>
                       </div>}
                   </li>
-                  <li><a href=""><BsChatRightTextFill />{showSpanTag == true && <span>Message </span>}</a></li>
+                  <li><Link to="chatSection"><BsChatRightTextFill />{showSpanTag == true && <span>Message </span>}</Link></li>
                   {/* <li><Link to="Attendance"><MdOutlineChat />{showSpanTag == true && <span>Attendance</span>}</Link></li> */}
                   <li><Link to="janrate-link"><MdCreateNewFolder />{showSpanTag == true && <span>Generat Link</span>}</Link></li>
                   <li><a href=""><MdAssignment />{showSpanTag == true && <span>Assignment</span>}</a></li>

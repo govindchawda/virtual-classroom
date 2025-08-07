@@ -1,13 +1,18 @@
 const express = require("express");
 const app = express();
-
+const http = require("http");
+const server = http.createServer(app);
 const dotenv = require("dotenv");
 const cors = require("cors")
 const connectionDb = require('./database/connection');
 const userroute = require("./routes/userRouter");
 const classRoute = require("./routes/classesRouter");
 const attendanceRouter = require("./routes/atttendanceRouter");
-const roomRouter = require("./routes/roomRouter");
+const chatRouter = require("./routes/chatRouter");
+
+
+const { Server } = require('socket.io');
+
 
 app.get('/home',(req,res)=>{
     res.send("home")
@@ -36,7 +41,33 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use('/api/auth/',userroute);
 app.use('/api/classes/',classRoute);
 app.use('/api/attendannce/',attendanceRouter);
-app.use('/api/googleMeeting/',roomRouter);
+app.use('/api/chat/',chatRouter);
+
+
+const io = new Server(server, 
+  {
+  cors: { origin: 'http://localhost:5173', methods: ['GET', 'POST'] }
+}
+);
+
+
+
+// Socket.IO connection
+io.on('connection', (socket) => {
+  console.log('a user connected');
+
+  socket.on('chat message', (msg) => {
+    io.emit('chat message', msg); // broadcast to all
+  });
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+});
+
+
+
+
 
 app.listen(port , ()=>{
     console.log(`app is running http://localhost:${port}`);

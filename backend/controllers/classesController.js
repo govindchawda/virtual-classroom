@@ -256,17 +256,19 @@ const showClassIncludeTeachers = async (req, res) => {
     try {
 
         const teac = req.params.id;
+        console.log("teac",teac)
         const classes = await classModel.find();
         if (!classes) { 
             return res.status(500).json({
                 success: false,
                 message: "internal server error"
             });
-        }
-
+        }   
+        console.log("classes",classes)
         const result = classes.filter((items)=>{
             return items.teacherId == teac 
         });
+        console.log(result);
              if (!result) { 
             return res.status(500).json({
                 success: false,

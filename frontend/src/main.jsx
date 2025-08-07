@@ -128,6 +128,8 @@ const SearchAttendanceClass = lazy(() => import('./componants/common/Attendance/
 const SearchStudents = lazy(() => import('./componants/common/Attendance/SearchStudents.jsx'));
 const JanrateLink = lazy(()=> import('./componants/common/janrate_link/JanrateLink.jsx'));
 const Terms_condition = lazy(()=> import('./componants/common/terms_condition/Terms_condition.jsx'));
+const ChatBoard = lazy(()=> import('./componants/common/chatSection/ChatBoard.jsx'));
+const JoinChatBoard = lazy(()=> import('./componants/common/chatSection/JoinChatBoard.jsx'));
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -174,6 +176,8 @@ createRoot(document.getElementById('root')).render(
             <Route path='/overview/attendance/:id@qwert' element={<ViewAttendanceClass />} />
             <Route path='/overview/showattendance/:id@qwert' element={<SearchAttendanceClass />} />
             <Route path='searchattendance' element={<SearchStudents />} />
+            <Route path='chatSection' element={<ChatBoard />} />
+            <Route path='/overview/chat/:id@qwert' element={<JoinChatBoard />} />
           </Route>
 
           {/* Wrong route */}
