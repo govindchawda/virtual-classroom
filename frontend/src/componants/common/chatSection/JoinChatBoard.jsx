@@ -643,7 +643,7 @@ const JoinChatBoard = () => {
   return (
     <>
       <div className="container-fluid">
-        <div className="container">
+        <div className="container mediaFonts">
           <div className="tittle color d-flex justify-content-between">
             <span># ChatBoard</span>
           </div>
