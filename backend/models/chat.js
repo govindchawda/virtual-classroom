@@ -9,7 +9,15 @@ const chatSchema = mongoose.Schema({
   },
   message: {
     type: String,
-    required: true
+    default: "",
+  },
+    fileUrl: {
+    type: String, // cloudinary url
+    default: null,
+  },
+  fileType: {
+    type: String, // image/png, video/mp4, application/pdf
+    default: null,
   },
   classId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -17,7 +25,8 @@ const chatSchema = mongoose.Schema({
     required: true
   },
 
-});
+},{ timestamps: true });
+
 
 const chatModel = mongoose.model('chat', chatSchema);
 module.exports = chatModel;
