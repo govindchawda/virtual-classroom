@@ -1,5 +1,5 @@
 const express = require("express");
-const { saveChat, getChat } = require("../controllers/chatController");
+const { saveChat, getChat, deleteChat } = require("../controllers/chatController");
 const chatRouter = express.Router();
 
 
@@ -7,6 +7,9 @@ const chatRouter = express.Router();
 chatRouter.post('/send', saveChat);
 
 chatRouter.get('/all/:id', getChat) ;
+
+
+chatRouter.delete('/deleteChat/:id', deleteChat) ;
 
 
 

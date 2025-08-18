@@ -1,115 +1,19 @@
-// import React, { useEffect, useState } from 'react';
-// import io from 'socket.io-client';
-// import axios from 'axios';
-// import { toast, ToastContainer } from 'react-toastify';
-// import { Link, useParams } from 'react-router-dom';
-// const api = import.meta.env.VITE_API_BASE_URL;
-
-// const socket = io('http://localhost:4000');
-
-// const JoinChatBoard = () => {
-
-//     const classid = useParams();
-//   const [messages, setMessages] = useState([]);
-//   const [user, setUser] = useState();
-//   const [input, setInput] = useState('');
-
-
-//   useEffect(() => {
-//     axios.get(`${api}/auth/getusers`, {
-//       headers: {
-//         "Authorization": "bearer " + localStorage.getItem("tokeId")
-//       }
-//     }).then((res) => {
-//       if (!res) {
-//         return toast.error("user is not found")
-//       }
-//       setUser(res.data.result);
-//     }).catch((error) => {
-//       console.log(`user profile error : ${error}`)
-//     })
-//   }, []);
-
-//   // Load messages on mount
-//   useEffect(() => {
-//     axios.get(`${api}/chat/all/${classid?.id}`)
-//       .then(res => setMessages(res.data.result)).catch((error) => console.log("get all chat error" ,error))
-//   }, []);
-
-//     console.log("messages",messages)
-//   // Listen for incoming messages
-//   useEffect(() => {
-//     socket.on('chat message', (msg) => {
-//       setMessages(prev => [...prev, msg]);
-//     });
-
-//     return () => socket.off('chat message');
-//   }, []);
-
-//   const sendMessage = async (e) => {
-//     e.preventDefault();
-//     const newMsg = {
-//       sender: user?._id, // replace with logged in user
-//       message: input,
-//       classId:classid.id,
-//     };
-
-//     await axios.post(`${api}/chat/send`, newMsg);
-//     socket.emit('chat message', newMsg);
-//     setInput('');
-//   };
-//   return (
-//     <>
-//       <div className="container-fluid">
-//         <div className="container">
-//           <div className='tittle color d-flex justify-content-between'>
-//             <span># ChatBoard</span>
-//           </div>
-
-//           <div style={{ height: '300px', overflowY: 'scroll', border: '1px solid gray', padding: '1rem' }}>
-//             {messages.map((msg, i) => (
-//               <div key={i}><strong>{msg?.sender?.name || 'User'} : </strong> {msg?.message}</div>
-//             ))}
-//           </div>
-//           <form onSubmit={sendMessage}>
-//             <div className="col-sm-6 mt-3 d-flex">
-//               <input className='form-control' placeholder='...' value={input} onChange={(e) => setInput(e.target.value)} required />
-//               <button className='btn btn-primary mx-3' type="submit">Send</button>
-//             </div>
-//           </form>
-//         </div>
-//       </div>
-//       <ToastContainer />
-//     </>
-//   );
-// };
-
-// export default JoinChatBoard;
-
-
-
-
-
-
-
-
-
-
-// import React, { useEffect, useState } from 'react';
-// import io from 'socket.io-client';
-// import axios from 'axios';
-// import { toast, ToastContainer } from 'react-toastify';
-// import { useParams } from 'react-router-dom';
+// import React, { useEffect, useState } from "react";
+// import io from "socket.io-client";
+// import axios from "axios";
+// import { toast, ToastContainer } from "react-toastify";
+// import { useParams } from "react-router-dom";
 
 // const api = import.meta.env.VITE_API_BASE_URL;
-// const socket = io('http://localhost:4000');
+// const socket = io("http://localhost:4000");
 
 // const JoinChatBoard = () => {
 //   const classid = useParams();
 //   const [messages, setMessages] = useState([]);
 //   const [user, setUser] = useState();
-//   const [input, setInput] = useState('');
+//   const [input, setInput] = useState("");
 //   const [file, setFile] = useState(null);
+//   // const [user, setUser] = useState([]);
 
 //   // File select handler
 //   const fileHandler = (event) => {
@@ -117,237 +21,7 @@
 //     if (!selectedFile) return;
 
 //     const reader = new FileReader();
-//     reader.readAsDataURL(selectedFile); // convert to Base64
-//     reader.onload = () => {
-//       setFile({
-//         data: reader.result,      // Base64 string
-//         type: selectedFile.type,  // mimetype: image/png, video/mp4, pdf
-//         name: selectedFile.name,  // optional: file name
-//       });
-//     };
-//     console.log("reader", reader.result)
-//   };
-
-//   // Load user
-//   useEffect(() => {
-//     axios
-//       .get(`${api}/auth/getusers`, {
-//         headers: {
-//           Authorization: 'bearer ' + localStorage.getItem('tokeId'),
-//         },
-//       })
-//       .then((res) => {
-//         if (!res) {
-//           return toast.error('user is not found');
-//         }
-//         setUser(res.data.result);
-//       })
-//       .catch((error) => {
-//         console.log(`user profile error : ${error}`);
-//       });
-//   }, []);
-
-//   // Load old messages
-//   useEffect(() => {
-//     axios
-//       .get(`${api}/chat/all/${classid?.id}`)
-//       .then((res) => setMessages(res.data.result))
-//       .catch((error) => console.log('get all chat error', error));
-//   }, [classid]);
-
-//   // Listen for incoming socket messages
-//   useEffect(() => {
-//     socket.on('chat message', (msg) => {
-//       setMessages((prev) => [...prev, msg]);
-//     });
-//     return () => socket.off('chat message');
-//   }, []);
-
-//   // File Reader function
-//   // const readFileAsBase64 = (file) => {
-//   //   return new Promise((resolve, reject) => {
-//   //     const reader = new FileReader();
-//   //     reader.onload = () => resolve(reader.result);
-//   //     reader.onerror = reject;
-//   //     reader.readAsDataURL(file); // Base64 string banega
-//   //   });
-//   // };
-
-//   // Send Message Function
-//   console.log("file", file)
-//   const sendMessage = async (e) => {
-//     e.preventDefault();
-
-//     if (!input && !file) {
-//       toast.error("Please add text or file");
-//       return;
-//     }
-
-//     const newMsg = {
-//       sender: user?._id,
-//       message: input,
-//       fileUrl: file?.data, // Base64 string
-//       fileType: file?.type,
-//       classId: classid.id,
-//     };
-//     console.log("newMsg",newMsg)
-
-//     try {
-//       const res =  await axios.post(`${api}/chat/send`, newMsg);
-//       console.log(res.data);
-//       if(!res){
-//         toast.error("internal server error")
-//       }
-//       socket.emit('chat message', newMsg);
-//       setInput('');
-//       setFile(null);
-//     } catch (err) {
-//       toast.error('Message not sent');
-//     }
-//   };
-
-//   return (
-//     <>
-//       <div className="container-fluid">
-//         <div className="container">
-//           <div className="tittle color d-flex justify-content-between">
-//             <span># ChatBoard</span>
-//           </div>
-
-//           {/* Messages Area */}
-//           <div
-//             style={{
-//               height: '300px',
-//               overflowY: 'scroll',
-//               border: '1px solid gray',
-//               padding: '1rem',
-//             }}
-//           >
-//             {messages.map((msg, i) => (
-//               <div key={i} style={{ marginBottom: '10px' }}>
-//                 <div className='d-flex justify-content-between py-3 border-top'>
-//                   <div>
-//                 <strong>{msg?.sender?.name || 'User'} : </strong>
-//                 {msg?.message && <span>{msg.message}</span>}
-//                   </div>
-//                 <strong>{msg?.createdAt}</strong>
-//                 </div>
-
-//                 {/* Image */}
-//                 {msg?.fileType?.startsWith('image/') && msg.fileUrl && (
-//                   <div>
-//                     <img
-//                       src={msg?.fileUrl}
-//                       alt="img"
-//                       style={{
-//                         maxWidth: '200px',
-//                         display: 'block',
-//                         marginTop: '5px',
-//                       }}
-//                     />
-//                   </div>
-//                 )}
-
-//                 {/* Video */}
-//                 {msg?.fileType?.startsWith('video/') && msg.fileUrl && (
-//                   <div>
-//                     <video
-//                       controls
-//                       style={{
-//                         maxWidth: '300px',
-//                         display: 'block',
-//                         marginTop: '5px',
-//                       }}
-//                     >
-//                       <source src={msg.fileUrl} type={msg.fileType} />
-//                     </video>
-//                   </div>
-//                 )}
-
-//                 {/* PDF */}
-//                 {msg?.fileType === 'application/pdf' && msg.fileUrl && (
-//                   <div>
-//                     <a
-//                       href={msg.fileUrl}
-//                       target="_blank"
-//                       rel="noopener noreferrer"
-//                       style={{
-//                         color: 'blue',
-//                         textDecoration: 'underline',
-//                       }}
-//                     >
-//                       📄 View PDF
-//                     </a>
-//                   </div>
-//                 )}
-//               </div>
-//             ))}
-//           </div>
-
-//           {/* Input Area */}
-//           <form onSubmit={sendMessage}>
-//             <div className="col-sm-6 mt-3 d-flex">
-//               <input
-//                 className="form-control"
-//                 placeholder="Type a message..."
-//                 value={input}
-//                 onChange={(e) => setInput(e.target.value)}
-//               />
-//               <input
-//                 type="file"
-//                 name="file"
-//                 className="form-control mx-2"
-//                 onChange={fileHandler}
-//               />
-//               <button className="btn btn-primary mx-3" type="submit">
-//                 Send
-//               </button>
-//             </div>
-//           </form>
-//         </div>
-//       </div>
-//       <ToastContainer />
-//     </>
-//   );
-// };
-
-// export default JoinChatBoard;
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useEffect, useState } from 'react';
-// import io from 'socket.io-client';
-// import axios from 'axios';
-// import { toast, ToastContainer } from 'react-toastify';
-// import { useParams } from 'react-router-dom';
-
-// const api = import.meta.env.VITE_API_BASE_URL;
-// const socket = io('http://localhost:4000');
-
-// const JoinChatBoard = () => {
-//   const classid = useParams();
-//   const [messages, setMessages] = useState([]);
-//   const [user, setUser] = useState();
-//   const [input, setInput] = useState('');
-//   const [file, setFile] = useState(null);
-//   const [showOptions, setShowOptions] = useState(false);
-
-//   // File select handler
-//   const fileHandler = (event) => {
-//     const selectedFile = event.target.files[0];
-//     if (!selectedFile) return;
-
-//     const reader = new FileReader();
-//     reader.readAsDataURL(selectedFile); // convert to Base64
+//     reader.readAsDataURL(selectedFile);
 //     reader.onload = () => {
 //       setFile({
 //         data: reader.result,
@@ -359,30 +33,34 @@
 
 //   // Load user
 //   useEffect(() => {
-//     axios
-//       .get(`${api}/auth/getusers`, {
-//         headers: {
-//           Authorization: 'bearer ' + localStorage.getItem('tokeId'),
-//         },
-//       })
-//       .then((res) => setUser(res.data.result))
-//       .catch((error) => console.log(`user profile error : ${error}`));
+//     axios.get(`${api}/auth/getusers`, {
+//       headers: {
+//         Authorization: "bearer " + localStorage.getItem("tokeId"),
+//       },
+//     }).then((res) => {
+//       if (!res) {
+//         return toast.error("user is not found");
+//       }
+//       setUser(res.data.result);
+//     }).catch((error) => {
+//       console.log(`user profile error : ${error}`);
+//     });
 //   }, []);
 
 //   // Load old messages
 //   useEffect(() => {
-//     axios
-//       .get(`${api}/chat/all/${classid?.id}`)
-//       .then((res) => setMessages(res.data.result))
-//       .catch((error) => console.log('get all chat error', error));
+//     axios.get(`${api}/chat/all/${classid?.id}`).then((res) => {
+//       setMessages(res.data.result)
+//     }).catch((error) => console.log("get all chat error", error));
 //   }, [classid]);
 
-//   // Listen for socket messages
+
+//   // Listen for incoming socket messages
 //   useEffect(() => {
-//     socket.on('chat message', (msg) => {
+//     socket.on("chat message", (msg) => {
 //       setMessages((prev) => [...prev, msg]);
 //     });
-//     return () => socket.off('chat message');
+//     return () => socket.off("chat message");
 //   }, []);
 
 //   // Send Message Function
@@ -396,9 +74,13 @@
 
 //     const newMsg = {
 //       sender: user?._id,
-//       message: input,
-//       fileUrl: file?.data,
-//       fileType: file?.type,
+//       message: input || file?.data,
+//       fileType: file
+//         ? (file.type.startsWith("image/") ? "image"
+//           : file.type.startsWith("video/") ? "video"
+//             : file.type === "application/pdf" ? "pdf"
+//               : "file")
+//         : "text",
 //       classId: classid.id,
 //     };
 
@@ -407,118 +89,149 @@
 //       if (!res) {
 //         toast.error("internal server error");
 //       }
-//       socket.emit('chat message', newMsg);
-//       setInput('');
+//       socket.emit("chat message", newMsg);
+//       setInput("");
 //       setFile(null);
+//       toast(res.data.message)
 //     } catch (err) {
-//       toast.error('Message not sent');
+//       toast.error("Message not sent");
 //     }
 //   };
+
+//   // delete chat
+//   const deleteChat = async (id) => {
+//     try {
+//       if (!id) {
+//         return toast.error("message can't delete");
+//       }
+//       const res = await axios.delete(`${api}/chat/deleteChat/${id}`)
+//       if (!res) {
+//         return toast.error("internal server error");
+//       }
+//       toast(res.data.message);
+//     } catch (error) {
+//       console.log("delete chat error", error);
+//     }
+//   }
 
 //   return (
 //     <>
 //       <div className="container-fluid">
-//         <div className="container">
+//         <div className="container mediaFonts">
 //           <div className="tittle color d-flex justify-content-between">
 //             <span># ChatBoard</span>
 //           </div>
 
 //           {/* Messages Area */}
-//           <div
-//             style={{
-//               height: '300px',
-//               overflowY: 'scroll',
-//               border: '1px solid gray',
-//               padding: '1rem',
-//             }}
-//           >
-//             {messages.map((msg, i) => (
-//               <div key={i} style={{ marginBottom: '10px' }}>
-//                 <div className="d-flex justify-content-between py-3 border-top">
-//                   <div>
-//                     <strong>{msg?.sender?.name || 'User'} : </strong>
-//                     {msg?.message && <span>{msg.message}</span>}
+//           <div className="mt-3 message_board">
+//             {messages.map((msg, i) => {
+//               const isMyMessage = msg?.sender?._id === user?._id;
+
+//               // Current message date (only date part, not time)
+//               const msgDate = new Date(msg?.createdAt).toLocaleDateString();
+//               // Previous message date
+//               const prevMsgDate = i > 0 ? new Date(messages[i - 1]?.createdAt).toLocaleDateString() : null;
+//               return (
+//                 <>
+//                   {/* Date Separator */}
+//                   {msgDate !== prevMsgDate && (
+//                     <div className="date_separator">
+//                       {msgDate}
+//                     </div>
+//                   )}
+//                   <div key={i} className={`d-flex mb-2 ${isMyMessage ? "justify-content-end" : "justify-content-start"}`} >
+//                     <div className={`message-bubble ${isMyMessage ? "my-message" : "other-message"}`}>
+//                       {/* Text */}
+//                       {msg?.fileType === "text" && <span>{msg.message}</span>}
+
+//                       {/* Image */}
+//                       {msg?.fileType === "image" && (
+//                         <img className="chatImage" src={msg.message} alt="img" />
+//                       )}
+
+//                       {/* Video */}
+//                       {msg?.fileType === "video" && (
+//                         <video controls className="chatVideo">
+//                           <source src={msg.message} type="video/mp4" />
+//                         </video>
+//                       )}
+
+//                       {/* PDF */}
+//                       {msg?.fileType === "pdf" && (
+//                         <a href={msg.message} target="_blank" rel="noopener noreferrer" className="chatpdf" >📄 View PDF</a>
+//                       )}
+
+//                       {/* Time */}
+//                       <div className="d-flex justify-content-between" style={{ fontSize: "12px", color: "gray", marginTop: "5px" }}>
+//                         <div>
+//                           {new Date(msg?.createdAt).toLocaleTimeString([], {
+//                             hour: "2-digit",
+//                             minute: "2-digit",
+//                           })}
+//                         </div>
+//                         <div className="px-2" style={{ cursor: "pointer" }} onClick={() => deleteChat(msg?._id)}>
+//                           {(user?.role === "teacher" || user?.role === "admin" || (user?.role === "student" && msg.sender._id === user._id)) && (
+//                             <div className="chatdelete" onClick={() => deleteChat(msg)}>delete</div>
+//                           )}
+//                         </div>
+//                       </div>
+//                     </div>
 //                   </div>
-//                   <strong>{msg?.createdAt}</strong>
-//                 </div>
-
-//                 {/* Image */}
-//                 {msg?.fileType?.startsWith('image/') && msg.fileUrl && (
-//                   <img
-//                     src={msg?.fileUrl}
-//                     alt="img"
-//                     style={{ maxWidth: '200px', display: 'block', marginTop: '5px' }}
-//                   />
-//                 )}
-
-//                 {/* Video */}
-//                 {msg?.fileType?.startsWith('video/') && msg.fileUrl && (
-//                   <video controls style={{ maxWidth: '300px', display: 'block', marginTop: '5px' }}>
-//                     <source src={msg.fileUrl} type={msg.fileType} />
-//                   </video>
-//                 )}
-
-//                 {/* PDF */}
-//                 {msg?.fileType === 'application/pdf' && msg.fileUrl && (
-//                   <a
-//                     href={msg.fileUrl}
-//                     target="_blank"
-//                     rel="noopener noreferrer"
-//                     style={{ color: 'blue', textDecoration: 'underline' }}
-//                   >
-//                     📄 View PDF
-//                   </a>
-//                 )}
-//               </div>
-//             ))}
+//                 </>
+//               );
+//             })}
 //           </div>
 
-//           {/* Input Area */}
-//           <form onSubmit={sendMessage} className="d-flex align-items-center mt-3 p-2 border rounded" style={{ background: "#f8f9fa" }}>
-//             {/* Attachment Button */}
-//             <div className="position-relative mx-2">
-//               <button
-//                 type="button"
-//                 className="btn btn-light"
-//                 onClick={() => setShowOptions(!showOptions)}
-//               >
-//                 📎
-//               </button>
-
-//               {/* Options (Image, Video, PDF) */}
-//               {showOptions && (
-//                 <div
-//                   className="position-absolute p-2 border rounded bg-white shadow"
-//                   style={{ bottom: "50px", left: "0" }}
-//                 >
-//                   <label className="d-block" style={{ cursor: "pointer" }}>
-//                     🖼️ Image
-//                     <input type="file" accept="image/*" hidden onChange={fileHandler} />
-//                   </label>
-//                   <label className="d-block mt-2" style={{ cursor: "pointer" }}>
-//                     🎥 Video
-//                     <input type="file" accept="video/*" hidden onChange={fileHandler} />
-//                   </label>
-//                   <label className="d-block mt-2" style={{ cursor: "pointer" }}>
-//                     📄 PDF
-//                     <input type="file" accept="application/pdf" hidden onChange={fileHandler} />
-//                   </label>
-//                 </div>
+//           {/* File Preview */}
+//           {file && (
+//             <div className="chat-message-box">
+//               {/* Image Preview */}
+//               {file.type.startsWith("image/") && (
+//                 <img src={file.data} alt="preview" className="chat-image" />
 //               )}
+
+//               {/* Video Preview */}
+//               {file.type.startsWith("video/") && (
+//                 <video src={file.data} className="chat-file-preview" muted />
+//               )}
+
+//               {/* PDF Preview */}
+//               {file.type === "application/pdf" && (
+//                 <div> <span>📄 {file.name}</span></div>
+//               )}
+
+//               {/* Send button */}
+//               <button className="chat-delete-btn" onClick={sendMessage}> Send</button>
 //             </div>
+//           )}
 
-//             {/* Input Field */}
-//             <input
-//               className="form-control mx-2"
-//               placeholder="Type a message..."
-//               value={input}
-//               onChange={(e) => setInput(e.target.value)}
-//             />
+//           {/* Input Area */}
+//           <form onSubmit={sendMessage}>
+//             <div className="d-flex mt-3 align-items-center">
+//               <input
+//                 className="form-control"
+//                 placeholder="Type a message..."
+//                 value={input}
+//                 onChange={(e) => setInput(e.target.value)}
+//                 disabled={file !== null} // Disable text input if file is selected
+//               />
 
-//             {/* Send Button */}
-//             <button className="btn btn-primary" type="submit">
-//               ➤
-//             </button>
+//               {/* File button */}
+//               <label className={`send-icon ${input ? "disabled" : ""}`} >
+//                 📎
+//                 <input
+//                   type="file"
+//                   style={{ display: "none" }}
+//                   onChange={fileHandler}
+//                   disabled={input.length > 0} // Disable file select if input has text
+//                 />
+//               </label>
+
+//               {/* Send text button */}
+//               <button className="btn btn-primary mx-2" type="submit">
+//                 ➤
+//               </button>
+//             </div>
 //           </form>
 //         </div>
 //       </div>
@@ -531,22 +244,12 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import io from "socket.io-client";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import { useParams } from "react-router-dom";
+// import "./chat.css";
 
 const api = import.meta.env.VITE_API_BASE_URL;
 const socket = io("http://localhost:4000");
@@ -558,39 +261,20 @@ const JoinChatBoard = () => {
   const [input, setInput] = useState("");
   const [file, setFile] = useState(null);
 
-  // File select handler
-  const fileHandler = (event) => {
-    const selectedFile = event.target.files[0];
-    if (!selectedFile) return;
+  const messagesEndRef = useRef(null);
 
-    const reader = new FileReader();
-    reader.readAsDataURL(selectedFile); // convert to Base64
-    reader.onload = () => {
-      setFile({
-        data: reader.result, // Base64 string
-        type: selectedFile.type,
-        name: selectedFile.name,
-      });
-    };
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   // Load user
   useEffect(() => {
     axios
       .get(`${api}/auth/getusers`, {
-        headers: {
-          Authorization: "bearer " + localStorage.getItem("tokeId"),
-        },
+        headers: { Authorization: "bearer " + localStorage.getItem("tokeId") },
       })
-      .then((res) => {
-        if (!res) {
-          return toast.error("user is not found");
-        }
-        setUser(res.data.result);
-      })
-      .catch((error) => {
-        console.log(`user profile error : ${error}`);
-      });
+      .then((res) => setUser(res.data.result))
+      .catch((err) => console.log("user error", err));
   }, []);
 
   // Load old messages
@@ -598,7 +282,7 @@ const JoinChatBoard = () => {
     axios
       .get(`${api}/chat/all/${classid?.id}`)
       .then((res) => setMessages(res.data.result))
-      .catch((error) => console.log("get all chat error", error));
+      .catch((err) => console.log("get chat error", err));
   }, [classid]);
 
   // Listen for incoming socket messages
@@ -609,34 +293,70 @@ const JoinChatBoard = () => {
     return () => socket.off("chat message");
   }, []);
 
-  // Send Message Function
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  // File handler
+  const fileHandler = (event) => {
+    const selectedFile = event.target.files[0];
+    if (!selectedFile) return;
+
+    const reader = new FileReader();
+    reader.readAsDataURL(selectedFile);
+    reader.onload = () => {
+      setFile({
+        data: reader.result,
+        type: selectedFile.type,
+        name: selectedFile.name,
+      });
+    };
+  };
+
+  // Send message
   const sendMessage = async (e) => {
     e.preventDefault();
-
-    if (!input && !file) {
-      toast.error("Please add text or file");
-      return;
-    }
+    if (!input && !file) return toast.error("Add text or file");
 
     const newMsg = {
       sender: user?._id,
-      message: input,
-      fileUrl: file?.data,
-      fileType: file?.type,
+      message: input || file?.data,
+      fileType: file
+        ? file.type.startsWith("image/")
+          ? "image"
+          : file.type.startsWith("video/")
+          ? "video"
+          : file.type === "application/pdf"
+          ? "pdf"
+          : "file"
+        : "text",
       classId: classid.id,
+      createdAt: new Date(),
     };
 
     try {
       const res = await axios.post(`${api}/chat/send`, newMsg);
-      if (!res) {
-        toast.error("internal server error");
+      if (res) {
+        socket.emit("chat message", newMsg);
+        setInput("");
+        setFile(null);
+        toast.success(res.data.message);
       }
-      socket.emit("chat message", newMsg);
-      setInput("");
-      setFile(null);
-      toast(res.data.message)
     } catch (err) {
       toast.error("Message not sent");
+    }
+  };
+
+  // Delete chat
+  const deleteChat = async (id) => {
+    try {
+      const res = await axios.delete(`${api}/chat/deleteChat/${id}`);
+      if (res) {
+        setMessages((prev) => prev.filter((msg) => msg._id !== id));
+        toast.success(res.data.message);
+      }
+    } catch (err) {
+      console.log("delete error", err);
     }
   };
 
@@ -649,129 +369,91 @@ const JoinChatBoard = () => {
           </div>
 
           {/* Messages Area */}
-          <div
-            style={{
-              height: "300px",
-              overflowY: "scroll",
-              border: "1px solid gray",
-              padding: "1rem",
-            }}
-          >
-            {messages.map((msg, i) => (
-              <div key={i} style={{ marginBottom: "10px" }}>
-                <div className="d-flex justify-content-between py-3 border-top">
-                  <div>
-                    <strong>{msg?.sender?.name || "User"} : </strong>
-                    {msg?.message && <span>{msg.message}</span>}
-                  </div>
-                  <strong>{msg?.createdAt}</strong>
-                </div>
+          <div className="mt-3 message_board">
+            {messages.map((msg, i) => {
+              const isMyMessage = msg?.sender?._id === user?._id;
+              const msgDate = new Date(msg?.createdAt).toLocaleDateString();
+              const prevMsgDate =
+                i > 0
+                  ? new Date(messages[i - 1]?.createdAt).toLocaleDateString()
+                  : null;
 
-                {/* Image */}
-                {msg?.fileType?.startsWith("image/") && msg.fileUrl && (
-                  <div>
-                    <img
-                      src={msg?.fileUrl}
-                      alt="img"
-                      style={{
-                        maxWidth: "200px",
-                        display: "block",
-                        marginTop: "5px",
-                        borderRadius: "8px",
-                      }}
-                    />
-                  </div>
-                )}
-
-                {/* Video */}
-                {msg?.fileType?.startsWith("video/") && msg.fileUrl && (
-                  <div>
-                    <video
-                      controls
-                      style={{
-                        maxWidth: "300px",
-                        display: "block",
-                        marginTop: "5px",
-                        borderRadius: "8px",
-                      }}
+              return (
+                <React.Fragment key={i}>
+                  {msgDate !== prevMsgDate && (
+                    <div className="date_separator">{msgDate}</div>
+                  )}
+                  <div
+                    className={`d-flex mb-2 ${
+                      isMyMessage ? "justify-content-end" : "justify-content-start"
+                    }`}
+                  >
+                    <div
+                      className={`message-bubble ${
+                        isMyMessage ? "my-message" : "other-message"
+                      }`}
                     >
-                      <source src={msg.fileUrl} type={msg.fileType} />
-                    </video>
-                  </div>
-                )}
+                      {msg?.fileType === "text" && <span>{msg.message}</span>}
+                      {msg?.fileType === "image" && (
+                        <img className="chatImage" src={msg.message} alt="img" />
+                      )}
+                      {msg?.fileType === "video" && (
+                        <video controls className="chatVideo">
+                          <source src={msg.message} type="video/mp4" />
+                        </video>
+                      )}
+                      {msg?.fileType === "pdf" && (
+                        <a
+                          href={msg.message}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="chatpdf"
+                        >
+                          📄 View PDF
+                        </a>
+                      )}
 
-                {/* PDF */}
-                {msg?.fileType === "application/pdf" && msg.fileUrl && (
-                  <div>
-                    <a
-                      href={msg.fileUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        color: "blue",
-                        textDecoration: "underline",
-                      }}
-                    >
-                      📄 View PDF
-                    </a>
+                      <div className="d-flex justify-content-between message-time">
+                        <div>
+                          {new Date(msg?.createdAt).toLocaleTimeString([], {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })}
+                        </div>
+
+                        {(user?.role === "teacher" ||
+                          user?.role === "admin" ||
+                          (user?.role === "student" &&
+                            msg.sender._id === user._id)) && (
+                          <div
+                            className="chatdelete"
+                            onClick={() => deleteChat(msg._id)}
+                          >
+                            delete
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                )}
-              </div>
-            ))}
+                </React.Fragment>
+              );
+            })}
+            <div ref={messagesEndRef} />
           </div>
 
           {/* File Preview */}
           {file && (
-            <div
-              style={{
-                marginTop: "10px",
-                border: "1px solid #ccc",
-                padding: "8px",
-                borderRadius: "8px",
-                display: "inline-block",
-                position: "relative",
-              }}
-            >
-              {/* Image Preview */}
+            <div className="chat-message-box">
               {file.type.startsWith("image/") && (
-                <img
-                  src={file.data}
-                  alt="preview"
-                  style={{ width: "80px", height: "80px", borderRadius: "8px" }}
-                />
+                <img src={file.data} alt="preview" className="chat-image" />
               )}
-
-              {/* Video Preview */}
               {file.type.startsWith("video/") && (
-                <video
-                  src={file.data}
-                  style={{ width: "100px", borderRadius: "8px" }}
-                  muted
-                />
+                <video src={file.data} className="chat-file-preview" muted />
               )}
-
-              {/* PDF Preview */}
               {file.type === "application/pdf" && (
-                <div>
-                  <span>📄 {file.name}</span>
-                </div>
+                <div>📄 {file.name}</div>
               )}
-
-              {/* Send button */}
-              <button
-                onClick={sendMessage}
-                style={{
-                  position: "absolute",
-                  right: "-60px",
-                  top: "20px",
-                  background: "green",
-                  color: "white",
-                  border: "none",
-                  padding: "8px 12px",
-                  borderRadius: "8px",
-                  cursor: "pointer",
-                }}
-              >
+              <button className="chat-delete-btn" onClick={sendMessage}>
                 Send
               </button>
             </div>
@@ -780,33 +462,23 @@ const JoinChatBoard = () => {
           {/* Input Area */}
           <form onSubmit={sendMessage}>
             <div className="d-flex mt-3 align-items-center">
-             
-
-              {/* Text input */}
               <input
+                type="text"
                 className="form-control"
-                placeholder="Type a message..."
                 value={input}
+                placeholder="Type a message..."
                 onChange={(e) => setInput(e.target.value)}
+                disabled={file !== null}
               />
-
-               {/* File button */}
-              <label
-                style={{
-                  marginRight: "10px",
-                  cursor: "pointer",
-                  fontSize: "20px",
-                }}
-              >
+              <label className={`send-icon ${input ? "disabled" : ""}`}>
                 📎
                 <input
                   type="file"
                   style={{ display: "none" }}
                   onChange={fileHandler}
+                  disabled={input.length > 0}
                 />
               </label>
-
-              {/* Send text button */}
               <button className="btn btn-primary mx-2" type="submit">
                 ➤
               </button>

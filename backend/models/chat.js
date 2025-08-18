@@ -9,15 +9,11 @@ const chatSchema = mongoose.Schema({
   },
   message: {
     type: String,
-    default: "",
-  },
-    fileUrl: {
-    type: String, // cloudinary url
-    default: null,
+    required: true
   },
   fileType: {
     type: String, // image/png, video/mp4, application/pdf
-    default: null,
+    default: "text",
   },
   classId: {
     type: mongoose.Schema.Types.ObjectId,

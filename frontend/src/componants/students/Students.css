@@ -354,3 +354,100 @@ ul li:hover{
         max-width: 100%;
     }
 }
+
+
+
+/* chatboard */
+.message_board{
+  height: 300px;
+  overflow-y: scroll;
+  border: 1px solid gray;
+  padding: 1rem;
+}
+.date_separator{
+    text-align: center;
+    margin: 10px 0;
+    font-size: 14px;
+    color: gray;
+    font-weight: 500;
+}
+.message-bubble {
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 60%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.my-message {
+  background: #dcf8c6; 
+  align-self: flex-end;
+}
+
+.other-message {
+  background: #fff; 
+  align-self: flex-start;
+}
+.chatImage{
+    max-width: 200px;
+    border-radius: 8px;
+    margin-top: 5px;
+}
+.chatVideo{
+    max-width: 300px;
+    margin-top: 5px;
+}
+.chatpdf{
+    color: blue;
+    text-decoration: underline;
+}
+.chatdelete{
+    cursor: pointer;
+    color: red;
+}
+.chat-message-box {
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 8px;
+  display: inline-block;
+  position: relative;
+}
+.chat-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover; 
+}
+.chat-file-preview {
+  width: 100px;
+  border-radius: 8px;
+  object-fit: cover; 
+}
+.chat-delete-btn {
+  position: absolute;
+  right: -80px;
+  top: 20px;
+  background: green;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.chat-delete-btn:hover {
+  background: darkgreen;
+}
+
+.send-icon {
+  margin-right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: opacity 0.2s ease;
+}
+
+.send-icon.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
